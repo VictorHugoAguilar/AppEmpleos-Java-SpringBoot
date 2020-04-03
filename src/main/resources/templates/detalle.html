@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Detalle de la oferta</h1>
+	<hr />
+	<h2>[[${ vacante }]]</h2>
+	<h4 th:text=" 'Id: ' +  ${vacante.id} "></h4>
+	<h4 th:text=" 'Titulo de la oferta' + ${ vacante.nombre }"></h4>
+	<h4 th:text=" 'Descripcion de la oferta: ' + ${ vacante.descripcion }"></h4>
+	<h4 th:text=" 'Salario: ' + ${ vacante.salario}"></h4>
+	<h4 th:text=" 'Fecha :'+ ${ vacante.fecha }"></h4>
+
+</body>
+</html>
