@@ -33,7 +33,7 @@ public class CategoriaController {
 
 	// @GetMapping("/create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String crear() {
+	public String crear(Categoria categoria) {
 		return "categorias/formCategoria";
 
 	}

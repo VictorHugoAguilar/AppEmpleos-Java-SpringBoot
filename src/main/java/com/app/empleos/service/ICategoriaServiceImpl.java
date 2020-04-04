@@ -66,12 +66,18 @@ public class ICategoriaServiceImpl implements ICategoriaService {
 			cate5.setId(5);
 			cate5.setNombre("Programacion");
 			cate5.setDescripcion("Trabajos en entornos de la programacion");
+			
+			Categoria cate6 = new Categoria();
+			cate6.setId(6);
+			cate6.setNombre("Educacion");
+			cate6.setDescripcion("Maestros, tutores, etc");
 
 			lista.add(cate1);
 			lista.add(cate2);
 			lista.add(cate3);
 			lista.add(cate4);
 			lista.add(cate5);
+			lista.add(cate6);
 
 		} catch (Exception e) {
 			System.err.println(new Date() + "[CATEGORIAS] Error en la carga de categorias");

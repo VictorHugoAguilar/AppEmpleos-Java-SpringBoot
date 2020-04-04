@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.app.empleos.model.Categoria;
 import com.app.empleos.model.Vacante;
 
 @Service
@@ -29,22 +30,29 @@ public class VacantesServicesImpl implements IVacantesService {
 
 		try {
 
+			Categoria categoria = new Categoria();
+			categoria.setId(1);
+			categoria.setNombre("Generico");
+			categoria.setDescripcion("Generica descripcion");
+
 			// Creamos trabajo 1
 			Vacante vacante = new Vacante();
+			vacante.setCategoria(categoria);
+
 			vacante.setId(1);
 			vacante.setNombre("Programador Web");
 			vacante.setDescripcion("Programador Web para app de banco");
 			vacante.setFecha(sdf.parse("01-04-2020"));
 			vacante.setSalario(680.0);
 			vacante.setDestacado(1);
-			vacante.setCategoria("Generico");
 			vacante.setEstatus("Activa");
 			vacante.setImagen("logo1.jpg");
 
 			// Creamos trabajo 1
 			Vacante vacante1 = new Vacante();
+			vacante1.setCategoria(categoria);
+
 			vacante1.setId(2);
-			vacante1.setCategoria("Generico");
 			vacante1.setEstatus("Activa");
 			vacante1.setNombre("Programador App");
 			vacante1.setDescripcion("Programador App para app de banco");
@@ -55,8 +63,9 @@ public class VacantesServicesImpl implements IVacantesService {
 
 			// Creamos trabajo 1
 			Vacante vacante2 = new Vacante();
+			vacante2.setCategoria(categoria);
+
 			vacante2.setId(3);
-			vacante2.setCategoria("Generico");
 			vacante2.setEstatus("Activa");
 			vacante2.setNombre("Fisico");
 			vacante2.setDescripcion("Fisico para instituto de ciencia");
@@ -67,8 +76,9 @@ public class VacantesServicesImpl implements IVacantesService {
 
 			// Creamos trabajo 1
 			Vacante vacante3 = new Vacante();
+			vacante3.setCategoria(categoria);
+
 			vacante3.setId(4);
-			vacante3.setCategoria("Generico");
 			vacante3.setEstatus("Activa");
 			vacante3.setNombre("Medico");
 			vacante3.setDescripcion("Medico para residencia de ancianos");
@@ -79,8 +89,9 @@ public class VacantesServicesImpl implements IVacantesService {
 
 			// Creamos trabajo 1
 			Vacante vacante4 = new Vacante();
+			vacante4.setCategoria(categoria);
+
 			vacante4.setId(5);
-			vacante4.setCategoria("Generico");
 			vacante4.setEstatus("Activa");
 			vacante4.setNombre("Enfermero");
 			vacante4.setDescripcion("Enfermero para guardia en clininca");

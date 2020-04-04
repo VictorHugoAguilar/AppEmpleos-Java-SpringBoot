@@ -30,10 +30,9 @@
 			</h4>
 			<div class="card-body">
 				<form th:action="@{/categorias/save}" method="post"
-					th:objetc="${categoria}">
+					th:object="${categoria}">
 					<div class="row">
 
-						<!--  
 						<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger'
 							role='alert'>
 							Por favor corrija los siguientes errores:
@@ -41,12 +40,12 @@
 								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
 							</ul>
 						</div>
-						-->
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="nombre">Nombre</label> <input type="text"
 									class="form-control w-100" id="nombre" name="nombre"
+									th:field="*{nombre}"
 									placeholder="Escriba el nombre de la categoria"
 									required="required">
 							</div>
@@ -57,7 +56,7 @@
 							<div class="form-group">
 								<label for="descripcion">Descripción</label>
 								<textarea class="form-control w-100" name="descripcion"
-									id="descripcion" rows="2"></textarea>
+									th:field="*{descripcion}" id="descripcion" rows="2"></textarea>
 							</div>
 						</div>
 					</div>

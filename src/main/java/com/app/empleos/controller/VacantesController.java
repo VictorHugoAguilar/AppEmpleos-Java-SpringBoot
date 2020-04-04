@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.empleos.model.Vacante;
+import com.app.empleos.service.ICategoriaService;
 import com.app.empleos.service.IVacantesService;
 
 @Controller
@@ -29,6 +30,8 @@ public class VacantesController {
 
 	@Autowired
 	private IVacantesService serviceVacantes;
+	@Autowired
+	private ICategoriaService serviceCategorias;
 
 	@GetMapping("/index")
 	public String verVacantes(Model model) {
@@ -41,10 +44,12 @@ public class VacantesController {
 	}
 
 	@GetMapping("/create")
-	public String crear() {
+	public String crear(Vacante vacante, Model model) {
 
-		System.out.println("crear vacantes");
+		System.out.println(new Time() + "[VACANTES] ...Creando nueva vacante");
 
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
+		
 		return "vacantes/formVacante";
 	}
 
