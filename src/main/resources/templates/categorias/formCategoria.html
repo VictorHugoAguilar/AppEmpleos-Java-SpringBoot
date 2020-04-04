@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Crear categorias</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" th:href="@{/icon/favicon.ico}">
+
+<title>EmpleosApp | Aplicación para publicar Ofertas de Trabajo.</title>
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
 </head>
+
 <body>
-	<h1>Crear Categoria</h1>
+	<!--  header -->
+	<header th:insert="fragmets/menu.html :: menu-principal "> </header>
 
-	<form th:action="@{/categorias/save}" method="post">
+	<hr>
+	<div class="container">
+		<div class="card">
+			<h4 class="card-header">
+				<strong>Datos de la categoría</strong>
+			</h4>
+			<div class="card-body">
+				<form th:action="@{/categorias/save}" method="post">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="nombre">Nombre</label> <input type="text"
+									class="form-control w-100" id="nombre" name="nombre"
+									placeholder="Escriba el nombre de la categoria"
+									required="required">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="descripcion">Descripción</label>
+								<textarea class="form-control w-100" name="descripcion"
+									id="descripcion" rows="2"></textarea>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<button type="submit" title="Guardar el registro."
+						class="btn btn-primary">Guardar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
 
-		Nombre: <input type="text" name="nombre" value="" /> <br>
-		Descripción: <input type="text" name="descripcion" value="" /> <br>
+	<!--  footer -->
+	<footer class="footer" th:insert="fragments/footer.html :: pie-pagina">
+	</footer>
 
-		<button type="submit">Enviar</button>
-
-	</form>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -14,14 +14,14 @@ import com.app.empleos.service.IVacantesService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private IVacantesService serviceVacantes;
 
 	@GetMapping("/tablas")
 	public String mostrarTabla(Model model) {
 
-		model.addAttribute("vacantes", serviceVacantes.buscarTodas() );
+		model.addAttribute("vacantes", serviceVacantes.buscarTodas());
 
 		return "tablas";
 	}
@@ -44,9 +44,9 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
+		List<Vacante> vacantes = serviceVacantes.buscarTodas();
 
-		model.addAttribute("mensaje", "Hola desde el controller");
-		model.addAttribute("fecha", new Date());
+		model.addAttribute("vacantes", vacantes);
 
 		return "home";
 
@@ -66,6 +66,5 @@ public class HomeController {
 		return "listado";
 
 	}
-
 
 }
