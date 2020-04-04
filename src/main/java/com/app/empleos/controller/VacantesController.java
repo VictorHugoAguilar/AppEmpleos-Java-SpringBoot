@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.empleos.model.Vacante;
 import com.app.empleos.service.IVacantesService;
@@ -32,7 +34,7 @@ public class VacantesController {
 	public String verVacantes(Model model) {
 
 		List<Vacante> vacantes = serviceVacantes.buscarTodas();
-		
+
 		model.addAttribute("vacantes", vacantes);
 
 		return "vacantes/listVacantes";
@@ -47,7 +49,7 @@ public class VacantesController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(Vacante vacante, BindingResult result) {
+	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes) {
 
 		/**
 		 * Comprobamos si hay errores en el data-binding
@@ -61,18 +63,25 @@ public class VacantesController {
 		}
 
 		System.err.println(new Date() + "[GUARDANDO...]");
-
 		System.err.println(vacante);
 
 		serviceVacantes.guardar(vacante);
 
-		return "vacantes/listVacantes";
+		attributes.addFlashAttribute("msg", "Registro Guardado");
+
+		return "redirect:/vacantes/index";
 	}
 
-	public String eliminar(@RequestParam(value = "id") int idVacante, Model model) {
-		System.out.println("idVacante: " + idVacante);
-		model.addAttribute("id", idVacante);
-		return "mensaje";
+	@GetMapping("/delete")
+	public String eliminar(@RequestParam(value = "idVacante") int idVacante, RedirectAttributes attributes) {
+		System.out.println(new Time() + "[VACANTE] ...Borrando id " + idVacante);
+		boolean borrado = serviceVacantes.borrar(idVacante);
+
+		if (borrado) {
+			attributes.addFlashAttribute("msg", "Registro Borrado");
+		}
+
+		return "redirect:/vacantes/index";
 	}
 
 	@GetMapping("/view/{id}")

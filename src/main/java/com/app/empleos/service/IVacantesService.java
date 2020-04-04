@@ -11,5 +11,7 @@ public interface IVacantesService {
 	Vacante buscarPorId(Integer id);
 
 	void guardar(Vacante vacante);
+	
+	boolean borrar(Integer id);
 
 }

@@ -32,19 +32,21 @@
 				</h4>
 				<div class="card-body">
 
-					<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger'
-						role='alert'>
-						Por favor corrija los siguientes errores:
-						<ul>
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-						</ul>
-					</div>
-
-
 					<form th:action="@{/vacantes/save}" method="post"
 						th:object="${vacante}">
 
 						<div class="row">
+
+							<!--  
+						<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger'
+							role='alert'>
+							Por favor corrija los siguientes errores:
+							<ul>
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+							</ul>
+						</div>
+						-->
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label for="nombre">Nombre</label> <input type="text"
