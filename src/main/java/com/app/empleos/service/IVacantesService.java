@@ -7,7 +7,9 @@ import com.app.empleos.model.Vacante;
 public interface IVacantesService {
 
 	List<Vacante> buscarTodas();
-	
+
 	Vacante buscarPorId(Integer id);
+
+	void guardar(Vacante vacante);
 
 }

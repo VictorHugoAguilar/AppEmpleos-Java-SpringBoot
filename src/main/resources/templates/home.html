@@ -19,7 +19,7 @@
 
 <body>
 	<!--  header -->
-	<header th:insert="fragmets/menu.html :: menu-principal "> </header>
+	<header th:insert="fragments/menu :: menu-principal"></header>
 
 	<div role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
@@ -77,9 +77,8 @@
 	</div>
 
 	<!--  footer -->
-	<footer class="footer" th:insert="fragments/footer.html :: pie-pagina">
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
-	</footer>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

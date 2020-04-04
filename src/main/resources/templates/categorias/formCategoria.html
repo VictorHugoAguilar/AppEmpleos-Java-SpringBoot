@@ -20,7 +20,7 @@
 
 <body>
 	<!--  header -->
-	<header th:insert="fragmets/menu.html :: menu-principal "> </header>
+	<header th:insert="fragments/menu :: menu-principal"></header>
 
 	<hr>
 	<div class="container">
@@ -59,8 +59,8 @@
 	<!-- /container -->
 
 	<!--  footer -->
-	<footer class="footer" th:insert="fragments/footer.html :: pie-pagina">
-	</footer>
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
