@@ -5,22 +5,54 @@ package com.app.empleos.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * @author victorhugo
  * @Descripcion Clase Vacante POJO
  */
+
+@Entity
+@Table(name="Vacantes")
 public class Vacante {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="nombre", nullable = false)
 	private String nombre;
+	
+	@Column(name="descripcion", nullable = false)
 	private String descripcion;
+	
+	@Column(name="fecha", nullable = false)
 	private Date fecha;
+	
+	@Column(name="salalario", nullable = false)
 	private Double salario;
+	
+	@Column(name="destacado", nullable = false)
 	private Integer destacado;
+	
+	@Column(name="imagen")
 	private String imagen = "noImagen.png";
+	
+	@Column(name="detalles")
 	private String detalles;
+	
+	@Column(name="estatus", nullable = false)
 	private String estatus;
 
+	@OneToOne
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
 	public Vacante() {

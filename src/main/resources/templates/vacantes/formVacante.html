@@ -33,7 +33,7 @@
 				<div class="card-body">
 
 					<form th:action="@{/vacantes/save}" method="post"
-						th:object="${vacante}">
+						th:object="${vacante}" enctype="multipart/form-data">
 
 						<div class="row">
 
@@ -123,7 +123,7 @@
 								<div class="form-group">
 									<label for="archivoImagen">Imagen</label> <input type="file"
 										class="form-control-file" name="archivoImagen"
-										th:field="*{imagen}" id="archivoImagen">
+										id="archivoImagen">
 								</div>
 							</div>
 						</div>

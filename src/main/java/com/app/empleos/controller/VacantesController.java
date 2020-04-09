@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +19,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.empleos.model.Vacante;
 import com.app.empleos.service.ICategoriaService;
 import com.app.empleos.service.IVacantesService;
+import com.app.empleos.util.Utileria;
 
 @Controller
 @RequestMapping("/vacantes")
 public class VacantesController {
 
+	@Value("${empleosapp.ruta.imagenes}")
+	private String ruta;
+	
 	@Autowired
 	private IVacantesService serviceVacantes;
 	@Autowired
@@ -49,12 +55,13 @@ public class VacantesController {
 		System.out.println(new Time() + "[VACANTES] ...Creando nueva vacante");
 
 		model.addAttribute("categorias", serviceCategorias.buscarTodas());
-		
+
 		return "vacantes/formVacante";
 	}
 
 	@PostMapping("/save")
-	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes) {
+	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes,
+			@RequestParam("archivoImagen") MultipartFile multiPart) {
 
 		/**
 		 * Comprobamos si hay errores en el data-binding
@@ -65,6 +72,16 @@ public class VacantesController {
 			}
 
 			return "vacantes/formVacante";
+		}
+
+		if (!multiPart.isEmpty()) {
+
+			// String ruta = "/Users/victorhugo/workspaceEclipse/empleos/img-vacantes/";
+			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			if (nombreImagen != null) { // La imagen si se subio
+				// Procesamos la variable nombreImagen
+				vacante.setImagen(nombreImagen);
+			}
 		}
 
 		System.err.println(new Date() + "[GUARDANDO...]");
