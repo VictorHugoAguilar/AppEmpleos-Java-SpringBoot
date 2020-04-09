@@ -36,7 +36,7 @@ public class Vacante {
 	@Column(name="fecha", nullable = false)
 	private Date fecha;
 	
-	@Column(name="salalario", nullable = false)
+	@Column(name="salario", nullable = false)
 	private Double salario;
 	
 	@Column(name="destacado", nullable = false)
