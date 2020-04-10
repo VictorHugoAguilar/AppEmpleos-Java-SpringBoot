@@ -33,7 +33,7 @@ public class VacantesController {
 
 	@Value("${empleosapp.ruta.imagenes}")
 	private String ruta;
-	
+
 	@Autowired
 	private IVacantesService serviceVacantes;
 	@Autowired
@@ -41,7 +41,6 @@ public class VacantesController {
 
 	@GetMapping("/index")
 	public String verVacantes(Model model) {
-
 		List<Vacante> vacantes = serviceVacantes.buscarTodas();
 
 		model.addAttribute("vacantes", vacantes);
@@ -51,7 +50,6 @@ public class VacantesController {
 
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
-
 		System.out.println(new Time() + "[VACANTES] ...Creando nueva vacante");
 
 		model.addAttribute("categorias", serviceCategorias.buscarTodas());
@@ -84,8 +82,7 @@ public class VacantesController {
 			}
 		}
 
-		System.err.println(new Date() + "[GUARDANDO...]");
-		System.err.println(vacante);
+		System.err.println(new Date() + "[GUARDANDO...] " + vacante);
 
 		serviceVacantes.guardar(vacante);
 
@@ -96,7 +93,8 @@ public class VacantesController {
 
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam(value = "idVacante") int idVacante, RedirectAttributes attributes) {
-		System.out.println(new Time() + "[VACANTE] ...Borrando id " + idVacante);
+		System.err.println(new Time() + "[VACANTE] ...Borrando id " + idVacante);
+
 		boolean borrado = serviceVacantes.borrar(idVacante);
 
 		if (borrado) {
@@ -109,10 +107,13 @@ public class VacantesController {
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
 		Vacante vacanteBuscada = serviceVacantes.buscarPorId(idVacante);
-		System.out.println("Vacante:" + vacanteBuscada);
-		System.out.println("idVacante: " + idVacante);
-		model.addAttribute("vacante", serviceVacantes.buscarPorId(idVacante));
+
+		// System.out.println("Vacante:" + vacanteBuscada);
+		// System.out.println("idVacante: " + idVacante);
+
+		model.addAttribute("vacante", vacanteBuscada);
 		model.addAttribute("id", idVacante);
+
 		return "vacantes/detalle";
 	}
 
