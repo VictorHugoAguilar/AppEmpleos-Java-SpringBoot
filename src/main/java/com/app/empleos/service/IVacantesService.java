@@ -13,5 +13,7 @@ public interface IVacantesService {
 	void guardar(Vacante vacante);
 	
 	boolean borrar(Integer id);
+	
+	List<Vacante> buscarDestacadas();
 
 }

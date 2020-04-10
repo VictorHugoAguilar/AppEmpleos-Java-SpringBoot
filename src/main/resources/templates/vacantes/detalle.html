@@ -37,7 +37,7 @@
 					</h4>
 					<div class="card-body">
 						<h5 class="card-title">
-							<strong>Categoría: </strong> <span>Nombre la categoría</span>
+							<strong>Categoría: </strong> <span th:text="${ vacante.categoria.nombre }"></span>
 						</h5>
 						<h6 class="card-title">
 							<strong>Publicado: </strong> <span th:text=" ${ vacante.fecha }">
@@ -47,13 +47,15 @@
 							<strong>Salario Ofrecido: </strong><span
 								th:text=" '€ ' + ${ vacante.salario}"></span>
 						</h6>
-						<p class="card-text">La descripción corta de la oferta de
-							trabajo</p>
+						<div class="mb-2">
+							<strong>Descripción: </strong>
+							<p class="card-text" th:text=" ${ vacante.descripcion }"></p>
+						</div>
 
 						<div class="card bg-light mb-3">
 							<div class="card-body">
-								<h5 class="card-title">Detalles de la oferta de trabajo</h5>
-								<p class="card-text" th:text=" ${ vacante.descripcion }"></p>
+								<h5 class="card-title">Detalles</h5>
+								<p class="card-text" th:utext=" ${ vacante.detalles }"></p>
 							</div>
 						</div>
 						<a class="btn btn-primary" href="#" role="button"
